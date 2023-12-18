@@ -18,5 +18,7 @@ machines = {
         node_name = "pve1"
         custom_user_data_file = "docker5-user-data"
         custom_vendor_config_file = "docker5-vendor-config"
+        cpu_cores = 2
+        memory_mb = 4096
     }
 }

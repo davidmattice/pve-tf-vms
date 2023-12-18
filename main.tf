@@ -26,6 +26,13 @@ module "virtual_machines" {
     description = each.value.description
     additional_tags = each.value.vm_tags
 
+    cpu = {
+      cores = each.value.cpu_cores
+    }
+    memory = {
+      dedicated = each.value.memory_mb
+    }
+    
     custom_user_data_file = each.value.custom_user_data_file == "" ? "" : (fileexists(format("./custom/%s.yaml", each.value.custom_user_data_file)) ? format("./custom/%s.yaml", each.value.custom_user_data_file) : "")
     custom_vendor_config_file = each.value.custom_vendor_config_file == "" ? "" : (fileexists(format("./custom/%s.yaml", each.value.custom_vendor_config_file)) ? format("./custom/%s.yaml", each.value.custom_vendor_config_file) : "")
 }

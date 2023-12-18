@@ -34,5 +34,7 @@ variable "machines" {
         vm_tags = optional(list(string), [])
         custom_user_data_file = optional(string,"")
         custom_vendor_config_file = optional(string,"")
+        cpu_cores = optional(string,null)
+        memory_mb = optional(string,null)
     }))
 }
