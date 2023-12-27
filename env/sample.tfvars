@@ -12,12 +12,12 @@ template_tags   = ["ubuntu", "jammy", "template"]  # Search for a template with 
 # Virtual Machines
 ##############################
 machines = {
-    "docker5" = {
+    "sample" = {
         description = "Docker Host"
-        vm_tags = ["docker", "docker5"]
-        node_name = "pve1"
-        custom_user_data_file = "docker5-user-data"
-        custom_vendor_config_file = "docker5-vendor-config"
+        vm_tags = ["docker", "sample"]
+        node_name = "pve"
+        custom_user_data_file = "sample-user-data"
+        custom_vendor_config_file = "sample-vendor-config"
         cpu_cores = 2
         memory_mb = 4096
     }
