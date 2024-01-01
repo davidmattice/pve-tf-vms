@@ -25,6 +25,11 @@ variable "vm_tags" {
     type        = list(string)
     default     = []    
 }
+
+variable "default_domain" {
+    description = "Default domain name to be used for all VMs"
+    type        = string
+}
 variable "machines" {
     description = "User provided list of VMs to be managed"
     type        = map(object({
@@ -36,5 +41,9 @@ variable "machines" {
         custom_vendor_config_file = optional(string,"")
         cpu_cores = optional(string,null)
         memory_mb = optional(string,null)
+        network_dns_servers = optional(list(string),null)
+        network_dns_domain = optional(string,null)
+        network_gateway = optional(string,null)
+        network_address = optional(string,null)
     }))
 }
