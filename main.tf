@@ -13,7 +13,7 @@ data "proxmox_virtual_environment_vms" "template" {
 
 module "virtual_machines" {
   for_each       = var.machines
-    source       = "git::https://github.com/davidmattice/pve-tfm-vm?ref=v0.1.x"
+    source       = "git::https://github.com/davidmattice/pve-tfm-vm?ref=v0.2.x"
     providers     = {
       proxmox = proxmox
     }
@@ -22,7 +22,7 @@ module "virtual_machines" {
     template_id = local.template_id
 
     name = format("%s", each.key)
-    domain_name = "general.local"
+    domain_name = each.value.network_dns_domain != null ? each.value.netwrok_dns_domain : var.default_domain
     description = each.value.description
     additional_tags = each.value.vm_tags
 
@@ -31,6 +31,12 @@ module "virtual_machines" {
     }
     memory = {
       dedicated = each.value.memory_mb
+    }
+    network = {
+      dns_servers = each.value.network_dns_servers
+      dns_domain = each.value.network_dns_domain != null ? each.value.network_dns_domain : var.default_domain
+      gateway = each.value.network_gateway
+      address = each.value.network_address
     }
     
     custom_user_data_file = each.value.custom_user_data_file == "" ? "" : (fileexists(format("./custom/%s.yaml", each.value.custom_user_data_file)) ? format("./custom/%s.yaml", each.value.custom_user_data_file) : "")
