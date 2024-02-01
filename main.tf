@@ -13,7 +13,7 @@ data "proxmox_virtual_environment_vms" "template" {
 
 module "virtual_machines" {
   for_each       = var.machines
-    source       = "git::https://github.com/davidmattice/pve-tfm-vm?ref=v0.2.x"
+    source       = "git::https://github.com/davidmattice/pve-tfm-vm?ref=2nd-nic"
     providers     = {
       proxmox = proxmox
     }
