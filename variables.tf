@@ -45,5 +45,6 @@ variable "machines" {
         network_dns_domain = optional(string,null)
         network_gateway = optional(string,null)
         network_address = optional(string,null)
+        network_devices = optional(map(map(string)),null)
     }))
 }

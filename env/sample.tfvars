@@ -19,6 +19,16 @@ machines = {
         custom_user_data_file = "sample-user-data"
         custom_vendor_config_file = "sample-vendor-config"
         cpu_cores = 2
-        memory_mb = 4096
+        memory_mb = 
+        network_devices = {
+            "vmbr0" = {
+                "bridge" = "vmbr0"
+                "address" = "192.168.1.20/24"
+                "gateway" = "192.168.1.1"
+            }
+            "vmbr1" = {
+                "bridge" = "vmbr1"
+            }
+        }
     }
 }
