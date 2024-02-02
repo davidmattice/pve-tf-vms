@@ -13,7 +13,7 @@ data "proxmox_virtual_environment_vms" "template" {
 
 module "virtual_machines" {
   for_each       = var.machines
-    source       = "git::https://github.com/davidmattice/pve-tfm-vm?ref=v0.2.x"
+    source       = "git::https://github.com/davidmattice/pve-tfm-vm?ref=v0.3.x"
     providers     = {
       proxmox = proxmox
     }
@@ -38,6 +38,7 @@ module "virtual_machines" {
       gateway = each.value.network_gateway
       address = each.value.network_address
     }
+    network_devices = each.value.network_devices
     
     custom_user_data_file = each.value.custom_user_data_file == "" ? "" : (fileexists(format("./custom/%s.yaml", each.value.custom_user_data_file)) ? format("./custom/%s.yaml", each.value.custom_user_data_file) : "")
     custom_vendor_config_file = each.value.custom_vendor_config_file == "" ? "" : (fileexists(format("./custom/%s.yaml", each.value.custom_vendor_config_file)) ? format("./custom/%s.yaml", each.value.custom_vendor_config_file) : "")

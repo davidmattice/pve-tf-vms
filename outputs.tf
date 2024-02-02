@@ -4,6 +4,7 @@ locals {
             "desc" = vm.vm.description,
             "name" = format("%s.%s", vm.vm.name, vm.vm.initialization[0].dns[0].domain),
             "addr" = vm.vm.ipv4_addresses[1][0]
+            "network" = vm.network
         }
     }
 }
